@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Container Security Monitor</title>
+  <style>
+    body { background:#0c0c0e; color:#fff; font-family:sans-serif; padding:20px; }
+    h1 { color:#c9a84c; }
+    .alert { background:#1e1e26; border-left:4px solid red;
+             padding:12px; margin:10px 0; border-radius:6px; }
+    .critical { border-color:#e74c3c; }
+    .warning { border-color:#f39c12; }
+    button { background:#c9a84c; color:#000; border:none;
+             padding:12px 24px; border-radius:8px;
+             font-size:16px; cursor:pointer; margin:10px 5px; }
+    #status { color:#2ecc71; margin:10px 0; }
+  </style>
+</head>
+<body>
+  <h1>🛡️ Container Security Monitor</h1>
+  <p>Privileged Container Abuse — Attack & Detection Demo</p>
+  <div id="status">● System Ready</div>
+  <br>
+  <button onclick="triggerAttack()">⚔ Simulate Attack</button>
+  <button onclick="loadAlerts()">🔄 Refresh Alerts</button>
+  <h2>Live Alerts:</h2>
+  <div id="alerts">No alerts yet...</div>
+  <script>
+    const API = 'http://localhost:5000';
+
+    async function triggerAttack() {
+      document.getElementById('status').innerText = '⚠ Attack triggered!';
+      document.getElementById('status').style.color = '#e74c3c';
+      await fetch(API + '/run-attack');
+      setTimeout(loadAlerts, 500);
+    }
+
+    async function loadAlerts() {
+      const res = await fetch(API + '/alerts');
+      const data = await res.json();
+      const box = document.getElementById('alerts');
+      if (data.alerts.length === 0) {
+        box.innerHTML = 'No alerts yet...';
+        return;
+      }
+      box.innerHTML = data.alerts.map(a => `
+        <div class="alert ${a.priority.toLowerCase()}">
+          <strong>⚠ ${a.rule}</strong><br>
+          Priority: ${a.priority}<br>
+          ${a.message}
+        </div>
+      `).join('');
+    }
+
+    setInterval(loadAlerts, 3000);
+    window.onload = loadAlerts;
+  </script>
+</body>
+</html>

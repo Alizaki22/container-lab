@@ -1,0 +1,6 @@
+- rule: Privileged Container Started
+  desc: Detect privileged container launch
+  condition: container.privileged=true and evt.type=container
+  output: "CRITICAL Privileged container started (container=%container.name)"
+  priority: CRITICAL
+  tags: [container]
