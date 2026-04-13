@@ -1,6 +1,12 @@
 - rule: Privileged Container Started
   desc: Detect privileged container launch
-  condition: container.privileged=true and evt.type=container
-  output: "CRITICAL Privileged container started (container=%container.name)"
+  condition: container.privileged=true
+  output: "CRITICAL: Privileged container started (container=%container.name)"
   priority: CRITICAL
   tags: [container]
+
+- rule: Sensitive File Access
+  desc: Detect access to sensitive file inside container
+  condition: evt.type=open and container.id != host and fd.name=/etc/passwd
+  output: "WARNING: Sensitive file accessed (user=%user.name container=%container.name)"
+  priority: WARNING
