@@ -88,15 +88,18 @@ curl http://<Ubuntu_IP>:5000/run-attack
 
 ### 🖥️ Dashboard
 
-(Add your dashboard screenshot here)
+<img width="1535" height="738" alt="image" src="https://github.com/user-attachments/assets/d43efd2e-68f5-47d0-8a46-ef5e34f9f185" />
+
 
 ### ⚔️ Attack from Kali
 
-(Add Kali terminal screenshot here)
+
+<img width="824" height="433" alt="image" src="https://github.com/user-attachments/assets/6198376e-46a7-4bb4-a797-9f215e85a0ef" />
 
 ### 🚨 Alert Generated
 
-(Add alert screenshot here)
+
+<img width="1535" height="738" alt="image" src="https://github.com/user-attachments/assets/c511739b-93a6-4ba3-9033-33a9ee35097e" />
 
 ---
 
@@ -168,15 +171,6 @@ This project was developed as part of academic learning to understand container 
 
 ```
 
----
 
-# 🚀 WHAT TO DO NOW
-
-1. Open your repo  
-2. Edit `README.md`  
-3. Replace everything with this  
-4. Add your screenshots  
-
----
 
 
